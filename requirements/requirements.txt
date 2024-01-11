@@ -11,3 +11,4 @@ dbt-redshift
 
 #other
 pandas==1.5.2
+geoip2==4.8.0
