@@ -53,9 +53,9 @@ sudo mkdir mariadb_rpm
 sudo chown airflow /mariadb_rpm
 
 if [[ $(uname -p) == "aarch64" ]]; then
-  wget https://mirror.mariadb.org/yum/11.1/fedora38-aarch64/rpms/MariaDB-common-11.2.5-1.fc38.$(uname -p).rpm -P /mariadb_rpm
-  wget https://mirror.mariadb.org/yum/11.1/fedora38-aarch64/rpms/MariaDB-shared-11.2.5-1.fc38.$(uname -p).rpm -P /mariadb_rpm
-  wget https://mirror.mariadb.org/yum/11.1/fedora38-aarch64/rpms/MariaDB-devel-11.2.5-1.fc38.$(uname -p).rpm -P /mariadb_rpm
+  wget https://mirror.mariadb.org/yum/11.2.6/fedora38-aarch64/rpms/MariaDB-common-11.2.5-1.fc38.$(uname -p).rpm -P /mariadb_rpm
+  wget https://mirror.mariadb.org/yum/11.2.6/fedora38-aarch64/rpms/MariaDB-shared-11.2.5-1.fc38.$(uname -p).rpm -P /mariadb_rpm
+  wget https://mirror.mariadb.org/yum/11.2.6/fedora38-aarch64/rpms/MariaDB-devel-11.2.5-1.fc38.$(uname -p).rpm -P /mariadb_rpm
 else
   wget https://mirror.mariadb.org/yum/11.2.6/fedora38-amd64/rpms/MariaDB-common-11.2.5-1.fc38.$(uname -p).rpm -P /mariadb_rpm
   wget https://mirror.mariadb.org/yum/11.2.6/fedora38-amd64/rpms/MariaDB-shared-11.2.5-1.fc38.$(uname -p).rpm -P /mariadb_rpm
