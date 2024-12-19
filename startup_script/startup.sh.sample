@@ -19,24 +19,32 @@ source ~/.bash_profile
 
 echo "Info: Installing Python Versions for MWAA virtualenv"
 
-pyenv install 3.11
+pyenv install 3.12
 
-export PYTHON_3_11_PATH=$(find $PYENV_ROOT/versions/ -type f -iname "*python3.11")
-sudo cp $PYTHON_3_11_PATH /usr/bin/python3.11
+export PYTHON_3_12_PATH=$(find $PYENV_ROOT/versions/ -type f -iname "*python3.12")
+sudo cp $PYTHON_3_12_PATH /usr/bin/python3.12
 
 mkdir -p envs
 cd envs/
-python3.11 -m venv .virtualenv-dbt
+python3.12 -m venv .virtualenv-dbt
 source .virtualenv-dbt/bin/activate
 cd .virtualenv-dbt/bin/
 
-python3.11 -m pip install dbt-core==1.8.0b1 dbt-redshift==1.8.0b1
+# export PIP_CONSTRAINT=./constraints.txt
+python3.12 -m pip install dbt-core==1.9.1 dbt-redshift==1.9.0
 dbt --version
 deactivate
-
-echo "export DBT_PROFILE_TARGET='dev'" >> /usr/local/airflow/envs/.virtualenv-dbt/bin/activate
 
 echo "Deactivate DBT Virtual Environment"
 pyenv shell system
 pyenv global system
 echo "Success: Installed Python Versions for MWAA virtualenv" >&2
+
+echo "export DBT_PROFILE_TARGET='dev'" >> /usr/local/airflow/envs/.virtualenv-dbt/bin/activate
+
+echo "export DBT_REDSHIFT_HOST='aa-warehouse.ct5xde6dfdjh.us-east-2.redshift.amazonaws.com'" >> /usr/local/airflow/envs/.virtualenv-dbt/bin/activate
+echo "export DBT_REDSHIFT_DEV_USER_NAME='rwhite@adaction.com'" >> /usr/local/airflow/envs/.virtualenv-dbt/bin/activate # for ex. nkaladharan@adaction.com
+echo "export DBT_REDSHIFT_CLUSTER_ID='aa-warehouse'" >> /usr/local/airflow/envs/.virtualenv-dbt/bin/activate
+echo "export DBT_REDSHIFT_DEV_DB_NAME='de_sandbox'" >> /usr/local/airflow/envs/.virtualenv-dbt/bin/activate  # for BI Analysts it 'bi' and for DEs it's 'de_sandbox'
+echo "export DBT_REDSHIFT_DEV_SCHEMA_NAME='rwhite'" >> /usr/local/airflow/envs/.virtualenv-dbt/bin/activate # for ex. nkaladharan
+echo "export DBT_REDSHIFT_DEV_IAM_PROFILE='de@adgem'" >> /usr/local/airflow/envs/.virtualenv-dbt/bin/activate
