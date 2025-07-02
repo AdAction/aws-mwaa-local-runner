@@ -4,6 +4,7 @@ apache-airflow-providers-airbyte==3.5.1
 apache-airflow-providers-slack==8.5.1
 apache-airflow-providers-amazon==8.16.0
 apache-airflow-providers-datadog==3.5.1
+apache-airflow-providers-salesforce==5.6.1
 virtualenv==20.25.0
 
 #other
